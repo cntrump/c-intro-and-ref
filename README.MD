@@ -16,3 +16,8 @@ build html:
 make c.html
 ```
 
+build html with css:
+
+```bash
+makeinfo --html --css-include=style.css c.texi
+```
