@@ -66,6 +66,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+hr {
+  border-top: 1px solid #f0f2f7;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+}
+
+b, strong {
+  font-weight: 700;
+}
+
 pre, code, kbd, tt, samp, var {
   font-family: ui-monospace, monospace;
   font-size: 85%;
@@ -73,9 +84,11 @@ pre, code, kbd, tt, samp, var {
 }
 
 pre {
-  padding: 8px;
+  padding: 8px 16px;
   border-radius: 6px;
   line-height: 1.25;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch
 }
 
 code, kbd, tt, samp, var {
@@ -97,6 +110,10 @@ a > * {
 body > * {
   margin: 0 auto;
   max-width: 1150px;
+}
+
+div.example {
+  margin-left: 0;
 }
 -->
 </style>
