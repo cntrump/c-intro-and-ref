@@ -287,15 +287,16 @@ for the loop.  The loop itself consists of
 </li><li> Advancing the loop (executing <code>++i</code>, which increments <code>i</code>).
 </li></ul>
 
-<p>The net result is to execute <var>body</var> with 0 in <code>i</code>,
-then with 1 in <code>i</code>, and so on, stopping just before the repetition
-where <code>i</code> would equal <code>n</code>.
+<p>The net result is to execute <var>body</var> with 1 in <code>i</code>,
+then with 2 in <code>i</code>, and so on, stopping just before the repetition
+where <code>i</code> would equal <code>n</code>.  If <code>n</code> is less than 1,
+the loop will execute the body zero times.
 </p>
 <p>The body of the <code>for</code> statement must be one and only one
 statement.  You can&rsquo;t write two statements in a row there; if you try
 to, only the first of them will be treated as part of the loop.
 </p>
-<p>The way to put multiple statements in those places is to group them
+<p>The way to put multiple statements in such a place is to group them
 with a block, and that&rsquo;s what we do in this example.
 </p></dd>
 </dl>

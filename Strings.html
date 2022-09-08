@@ -144,7 +144,7 @@ constants, <a href="String-Constants.html">String Constants</a>.
 for the terminating null.  For instance,
 </p>
 <div class="example">
-<pre class="example">char text = { 'H', 'e', 'l', 'l', 'o', 0 };
+<pre class="example">char text[] = { 'H', 'e', 'l', 'l', 'o', 0 };
 </pre></div>
 
 <p>declares an array named &lsquo;<samp>text</samp>&rsquo; with six elements&mdash;five letters
@@ -152,7 +152,7 @@ and the terminating null character.  An equivalent way to get the same
 result is this,
 </p>
 <div class="example">
-<pre class="example">char text = &quot;Hello&quot;;
+<pre class="example">char text[] = &quot;Hello&quot;;
 </pre></div>
 
 <p>which copies the elements of the string constant, including <em>its</em>
