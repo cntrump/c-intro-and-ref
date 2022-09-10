@@ -131,19 +131,27 @@ Next: <a href="Directing-Compilation.html" accesskey="n" rel="next">Directing Co
 <span id="index-object-file"></span>
 <span id="index-compilation-module"></span>
 <span id="index-make-rules"></span>
+<span id="index-link"></span>
 
 <p>Early in the manual we explained how to compile a simple C program
 that consists of a single source file (see <a href="Compile-Example.html">Compiling the Example Program</a>).
 However, we handle only short programs that way.  A typical C program
-consists of many source files, each of which is a separate
+consists of many source files, each of which is usually a separate
 <em>compilation module</em>&mdash;meaning that it has to be compiled
-separately.
+separately.  (The source files that are not separate compilation
+modules are those that are used via <code>#include</code>; see <a href="Header-Files.html">Header Files</a>.)
 </p>
-<p>The full details of how to compile with GCC are documented in xxxx.
+<p>To compile a multi-module program, you compile each of the program&rsquo;s
+compilation modules, making an <em>object file</em> for that module.  The
+last step is to <em>link</em> the many object files together into a
+single executable for the whole program.
+</p>
+<p>The full details of how to compile C programs (and other programs)
+with GCC are documented in xxxx.
 Here we give only a simple introduction.
 </p>
-<p>These are the commands to compile two compilation modules,
-<samp>foo.c</samp> and <samp>bar.c</samp>, with a command for each module:
+<p>These commands compile two compilation modules, <samp>foo.c</samp> and
+<samp>bar.c</samp>, running the compiler for each module:
 </p>
 <div class="example">
 <pre class="example">gcc -c -O -g foo.c
@@ -152,28 +160,17 @@ gcc -c -O -g bar.c
 
 <p>In these commands, <samp>-g</samp> says to generate debugging information,
 <samp>-O</samp> says to do some optimization, and <samp>-c</samp> says to put
-the compiled code for that module into a corresponding <em>object
-file</em> and go no further.  The object file for <samp>foo.c</samp> is called
-<samp>foo.o</samp>, and so on.
+the compiled code for that module into a corresponding object file and
+go no further.  The object file for <samp>foo.c</samp> is automatically
+called <samp>foo.o</samp>, and so on.
 </p>
-<p>If you wish, you can specify the additional options <samp>-Wformat
--Wparenthesis -Wstrict-prototypes</samp>, which request additional warnings.
-</p>
-<p>One reason to divide a large program into multiple compilation modules
-is to control how each module can access the internals of the others.
-When a module declares a function or variable <code>extern</code>, other
-modules can access it.  The other functions and variables in
-a module can&rsquo;t be accessed from outside that module.
-</p>
-<p>The other reason for using multiple modules is so that changing
-one source file does not require recompiling all of them in order
-to try the modified program.  Dividing a large program into many
-substantial modules in this way typically makes recompilation much faster.
+<p>If you wish, you can specify the additional compilation options.  For
+instance, <samp>-Wformat -Wparenthesis -Wstrict-prototypes</samp> request
+additional warnings.
 </p>
 <span id="index-linking-object-files"></span>
-<p>After you compile all the program&rsquo;s modules, in order to run the
-program you must <em>link</em> the object files into a combined
-executable, like this:
+<p>After you compile all the program&rsquo;s modules, you link the object files
+into a combined executable, like this:
 </p>
 <div class="example">
 <pre class="example">gcc -o foo foo.o bar.o
@@ -184,12 +181,25 @@ executable file, and the other arguments are the object files to link.
 Always specify the executable file name in a command that generates
 one.
 </p>
+<p>One reason to divide a large program into multiple compilation modules
+is to control how each module can access the internals of the others.
+When a module declares a function or variable <code>extern</code>, other
+modules can access it.  The other functions and variables defined in a
+module can&rsquo;t be accessed from outside that module.
+</p>
+<p>The other reason for using multiple modules is so that changing one
+source file does not require recompiling all of them in order to try
+the modified program.  It is sufficient to recompile the source file
+that you changed, then link them all again.  Dividing a large program
+into many substantial modules in this way typically makes
+recompilation much faster.
+</p>
 <p>Normally we don&rsquo;t run any of these commands directly.  Instead we
 write a set of <em>make rules</em> for the program, then use the
 <code>make</code> program to recompile only the source files that need to
-be recompiled.
+be recompiled, by following those rules.  See <a data-manual="Make" href="../Make/index.html#Top">The GNU Make
+Mamual</a> in <cite>The GNU Make Manual</cite>.
 </p>
-
 </div>
 <hr>
 <div class="header">

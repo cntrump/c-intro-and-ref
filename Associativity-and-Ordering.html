@@ -144,8 +144,8 @@ combined in any order.  Thus, given four functions that return
 
 <p>may add up the results in any order.
 </p>
-<p>By contrast, arithmetic on signed integers, with overflow significant,
-is not really associative (see <a href="Integer-Overflow.html">Integer Overflow</a>).  Thus, the
+<p>By contrast, arithmetic on signed integers, in which overflow is significant,
+is not always associative (see <a href="Integer-Overflow.html">Integer Overflow</a>).  Thus, the
 additions must be done in the order specified, obeying parentheses and
 left-association.  That means computing <code>(foo () + bar ())</code> and
 <code>(baz () + quux ())</code> first (in either order), then adding the
